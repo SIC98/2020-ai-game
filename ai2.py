@@ -75,9 +75,9 @@ if __name__ == "__main__":
 
         if move[0] is None:
             a, b = find_any_close_position(board, move[2], move[3])
-            sys.stdout.write(f"{a} {b} {move[2]} {move[3]}")
+            sys.stdout.write(f"{a+1} {b+1} {move[2]+1} {move[3]+1}")
         else:
-            sys.stdout.write(f"{move[0]} {move[1]} {move[2]} {move[3]}")
+            sys.stdout.write(f"{move[0]+1} {move[1]+1} {move[2]+1} {move[3]+1}")
 
         # for row in range(7):
         #     for col in range(7):
