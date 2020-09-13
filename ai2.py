@@ -61,7 +61,7 @@ if __name__ == "__main__":
         g = AtaxxGame()
         args1 = dotdict({'numMCTSSims': 2000, 'cpuct': 1.0})
         n1 = NNet(g)
-        n1.load_checkpoint('.', 'model_file')
+        n1.load_checkpoint('.', 'best.pth.tar')
         mcts1 = MCTS(g, n1, args1)
         n1p = lambda x: np.argmax(mcts1.getActionProb(x, temp=0))
 
