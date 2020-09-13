@@ -71,7 +71,7 @@ if __name__ == "__main__":
             candidates += [(-score, a)]
 
         candidates.sort()
-        move = random.choice([a for score a in candidates if score == candidates[0][0]])
+        move = random.choice([a for score, a in candidates if score == candidates[0][0]])
 
         if move[0] is None:
             a, b = find_any_close_position(board, move[2], move[3])
