@@ -42,22 +42,6 @@ if __name__ == "__main__":
     # 출력 예시 : "0 0 2 2"
     elif input_str.startswith("PLAY"):
 
-        action2move = []
-        _directions_2 = [(2, 2), (2, 1), (2, 0), (2, -1), (2, -2), (1, -2), (0, -2), (-1, -2), (-2, -2), (-2, -1),
-                         (-2, 0), (-2, 1), (-2, 2), (-1, 2), (0, 2), (1, 2)]
-
-        for x in range(7):
-            for y in range(7):
-                action2move.append((None, None, x, y))
-
-        for x in range(7):
-            for y in range(7):
-                for dx, dy in _directions_2:
-                    if {x, y, x + dx, y + dy} <= set(range(7)):
-                        action2move.append((x, y, x + dx, y + dy))
-
-        action2move.append((None, None, None, None))
-
         g = AtaxxGame()
         args1 = dotdict({'numMCTSSims': 2000, 'cpuct': 1.0})
         n1 = NNet(g)
@@ -77,9 +61,17 @@ if __name__ == "__main__":
             line = [dic.get(n, n) for n in line]
             board.append(line)
 
-        action = n1p(np.array(board))
+        valids = self.game.getValidMoves(board, 1)
+        candidates = []
+        for a in range(self.game.getActionSize()):
+            if valids[a]==0:
+                continue
+            nextBoard, _, _ = self.game.getNextState(board, 1, a, 0)
+            score = self.game.getScore(nextBoard, 1)
+            candidates += [(-score, a)]
 
-        move = action2move[action]
+        candidates.sort()
+        move = random.choice([a for score a in candidates if score == candidates[0][0]])
 
         if move[0] is None:
             a, b = find_any_close_position(board, move[2], move[3])
