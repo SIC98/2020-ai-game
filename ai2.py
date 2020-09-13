@@ -42,7 +42,7 @@ if __name__ == "__main__":
     # 출력 예시 : "0 0 2 2"
     elif input_str.startswith("PLAY"):
 
-        g = AtaxxGame()
+        g = AtaxxGame(7)
         args1 = dotdict({'numMCTSSims': 2000, 'cpuct': 1.0})
         n1 = NNet(g)
         n1.load_checkpoint('.', 'best.pth.tar')
@@ -61,13 +61,13 @@ if __name__ == "__main__":
             line = [dic.get(n, n) for n in line]
             board.append(line)
 
-        valids = self.game.getValidMoves(board, 1)
+        valids = g.getValidMoves(board, 1)
         candidates = []
-        for a in range(self.game.getActionSize()):
+        for a in range(g.getActionSize()):
             if valids[a]==0:
                 continue
-            nextBoard, _, _ = self.game.getNextState(board, 1, a, 0)
-            score = self.game.getScore(nextBoard, 1)
+            nextBoard, _, _ = g.getNextState(board, 1, a, 0)
+            score = g.getScore(nextBoard, 1)
             candidates += [(-score, a)]
 
         candidates.sort()
