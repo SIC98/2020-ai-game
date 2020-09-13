@@ -42,7 +42,7 @@ if __name__ == "__main__":
     # 출력 예시 : "0 0 2 2"
     elif input_str.startswith("PLAY"):
 
-        g = AtaxxGame(7)
+        g = AtaxxGame()
         args1 = dotdict({'numMCTSSims': 2000, 'cpuct': 1.0})
         n1 = NNet(g)
         n1.load_checkpoint('.', 'best.pth.tar')
