@@ -45,7 +45,7 @@ class AtaxxGame:
     def getSquarePiece(piece):
         return AtaxxGame.square_content[piece]
 
-    def __init__(self, n):
+    def __init__(self):
         pass
 
     def getInitBoard(self):

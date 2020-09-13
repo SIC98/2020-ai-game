@@ -6,7 +6,7 @@ from tqdm import tqdm
 from utils import *
 import torch
 import torch.optim as optim
-from .AtaxxNNet import AtaxxNNet as onnet
+from AtaxxNNet import AtaxxNNet as onnet
 
 args = dotdict({
     'lr': 0.0003,
